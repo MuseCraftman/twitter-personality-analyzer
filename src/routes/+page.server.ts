@@ -19,8 +19,6 @@ export const actions: Actions = {
 			const rawTweets = await getUserTweets(username, 100, 200);
 			const tweets = stripTweetObject(rawTweets);
 
-			console.log(JSON.stringify(tweets, null, 2));
-
 			const mockAnalysis = {
 				username: rawUsername,
 				personalityTraits: {
