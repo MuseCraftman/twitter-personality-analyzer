@@ -1,0 +1,75 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+* {
+	margin: 0;
+}
+
+@font-face {
+	font-family: 'Swiss';
+	src: url('/fonts/swiss-black.woff2') format('woff2');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'JetBrain';
+	src: url('/fonts/jetBrain.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+h1 {
+	font-family: 'Swiss';
+	color: white;
+	text-transform: uppercase;
+	font-size: 5rem;
+	line-height: 0.9;
+	background: linear-gradient(to bottom, rgb(206, 206, 255), rgba(255, 255, 255, 0));
+	background-clip: text;
+	color: transparent;
+}
+
+p,
+span,
+a,
+li,
+ul,
+ol,
+input,
+button,
+textarea,
+select,
+label {
+	font-family: 'JetBrain', sans-serif;
+}
+
+.page-wrapper {
+	background-color: rgb(6, 6, 19);
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+
+	color: rgb(228, 236, 255);
+}
+
+.padding-global {
+	padding-inline: 3rem;
+
+	&.padding-header {
+		padding-top: 3rem;
+	}
+	&.padding-small {
+		padding-block: 2rem;
+	}
+}
+
+.container {
+	width: 100%;
+	max-width: 90rem;
+	margin-inline: auto;
+}
