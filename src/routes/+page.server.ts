@@ -1,4 +1,5 @@
 import type { Actions } from './$types';
+import { getUserTweets } from '$lib/server/core/scrap-twitter-user';
 
 export const actions: Actions = {
 	analyze: async ({ request }) => {
@@ -13,14 +14,13 @@ export const actions: Actions = {
 		}
 
 		try {
-			// TODO: Implement actual Twitter API integration and AI analysis
-			// For now, return mock data
+			const rawUsername = username.replace('@', '');
+			const tweets = await getUserTweets(username, 5, 200);
 
-			// Simulate network delay
-			await new Promise((resolve) => setTimeout(resolve, 2000));
+			console.log(JSON.stringify(tweets, null, 2));
 
 			const mockAnalysis = {
-				username: username.replace('@', ''),
+				username: rawUsername,
 				personalityTraits: {
 					openness: 0.75,
 					conscientiousness: 0.68,
@@ -28,7 +28,7 @@ export const actions: Actions = {
 					agreeableness: 0.71,
 					neuroticism: 0.45
 				},
-				summary: `Based on the analysis of @${username.replace('@', '')}'s tweets, this user shows high levels of extraversion and openness to experience. They tend to be outgoing and creative, with moderate conscientiousness and agreeableness. Their neuroticism levels are relatively low, suggesting emotional stability.`,
+				summary: `Based on the analysis of @${rawUsername}'s tweets, this user shows high levels of extraversion and openness to experience. They tend to be outgoing and creative, with moderate conscientiousness and agreeableness. Their neuroticism levels are relatively low, suggesting emotional stability.`,
 				keyInsights: [
 					'Highly social and engaging online presence',
 					'Creative and open to new ideas',
