@@ -55,19 +55,21 @@
 		padding: 2rem;
 		background: rgba(255, 255, 255, 0.04);
 		border: 1px solid rgba(255, 255, 255, 0.12);
-		border-radius: 0.75rem;
-		box-shadow: inset 0 0 1rem 0 rgba(0, 0, 0, 0.48);
+		border-radius: 1rem;
+		box-shadow: inset 0 0 1rem 0 rgba(0, 0, 0, 0.32);
 
 		h2 {
 			color: white;
-			margin-bottom: 1.5rem;
-			font-size: 1.5rem;
+			margin-bottom: 2rem;
+			padding-bottom: 0.75rem;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+			font-size: 1.75rem;
 		}
 
 		h3 {
 			color: rgba(255, 255, 255, 0.9);
-			margin: 1.5rem 0 1rem 0;
-			font-size: 1.2rem;
+			margin: 2rem 0 0.75rem 0;
+			font-size: 1.125rem;
 		}
 
 		.summary p {
@@ -77,41 +79,44 @@
 
 		.traits-grid {
 			display: grid;
-			gap: 1rem;
+			gap: 0.5rem;
 		}
 
 		.trait {
 			display: grid;
-			grid-template-columns: 1fr 2fr auto;
+			grid-template-columns: 1fr 3fr auto;
 			align-items: center;
-			gap: 1rem;
+			gap: 1.25rem;
+			padding: 0.25rem 0;
 		}
 
 		.trait-name {
 			color: rgba(255, 255, 255, 0.9);
-			font-weight: 500;
+			font-weight: 600;
 			min-width: 120px;
 		}
 
 		.trait-bar {
-			height: 8px;
-			background: rgba(255, 255, 255, 0.1);
-			border-radius: 4px;
+			height: 10px;
+			background: rgba(255, 255, 255, 0.14);
+			border-radius: 6px;
+			border: 1px solid rgba(255, 255, 255, 0.08);
 			overflow: hidden;
 		}
 
 		.trait-fill {
 			height: 100%;
-			background: linear-gradient(90deg, #4f46e5, #06b6d4);
-			border-radius: 4px;
-			transition: width 0.3s ease;
+			background: #4f46e5; /* solid color, no gradient */
+			border-radius: 6px;
+			transition: width 0.4s ease;
 		}
 
 		.trait-score {
-			color: rgba(255, 255, 255, 0.7);
+			color: rgba(255, 255, 255, 0.8);
 			font-size: 0.9rem;
 			min-width: 40px;
 			text-align: right;
+			font-weight: 500;
 		}
 
 		.key-insights ul {
@@ -121,8 +126,8 @@
 
 		.key-insights li {
 			color: rgba(255, 255, 255, 0.8);
-			padding: 0.5rem 0;
-			border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+			padding: 0.75rem 0;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
 			&:last-child {
 				border-bottom: none;

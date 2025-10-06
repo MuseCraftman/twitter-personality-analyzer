@@ -2,7 +2,7 @@
 	<div class="padding-global padding-header">
 		<div class="container">
 			<div class="header-inner">
-				<h1>X profile personality analyzer</h1>
+				<h1>X profile <br /> personality analyzer</h1>
 				<p>Enter a Twitter <span>@username</span> to generate an AI-powered personality profile</p>
 			</div>
 		</div>
