@@ -1,5 +1,6 @@
 import type { Actions } from './$types';
 import { getUserTweets } from '$lib/server/core/scrap-twitter-user';
+import stripTweetObject from '$lib/server/core/process-tweets';
 
 export const actions: Actions = {
 	analyze: async ({ request }) => {
@@ -15,7 +16,8 @@ export const actions: Actions = {
 
 		try {
 			const rawUsername = username.replace('@', '');
-			const tweets = await getUserTweets(username, 5, 200);
+			const rawTweets = await getUserTweets(username, 100, 200);
+			const tweets = stripTweetObject(rawTweets);
 
 			console.log(JSON.stringify(tweets, null, 2));
 
