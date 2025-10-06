@@ -27,11 +27,12 @@ h1 {
 	font-family: 'Swiss';
 	color: white;
 	text-transform: uppercase;
-	font-size: 5rem;
-	line-height: 0.9;
+	font-size: 4rem;
+	line-height: 1;
 	background: linear-gradient(to bottom, rgb(206, 206, 255), rgba(255, 255, 255, 0));
 	background-clip: text;
 	color: transparent;
+	max-width: 24ch;
 }
 
 p,
@@ -62,6 +63,7 @@ label {
 
 	&.padding-header {
 		padding-top: 3rem;
+		padding-bottom: 3rem;
 	}
 	&.padding-small {
 		padding-block: 2rem;
@@ -70,6 +72,6 @@ label {
 
 .container {
 	width: 100%;
-	max-width: 90rem;
+	max-width: 64rem;
 	margin-inline: auto;
 }
