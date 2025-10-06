@@ -7,7 +7,7 @@ A web application that uses AI and `twitterapi.io` to scrape and analyze Twitter
 1. Clone this repository:
 
 ```sh
-git clone <repository-url>
+git clone https://github.com/MuseCraftman/twitter-personality-analyzer.git
 cd twitter-personality-analyzer
 ```
 
