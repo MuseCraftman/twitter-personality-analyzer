@@ -1,6 +1,7 @@
 import type { Actions } from './$types';
 import { getUserTweets } from '$lib/server/core/scrap-twitter-user';
 import stripTweetObject from '$lib/server/core/process-tweets';
+import { analyzePersonality } from '$lib/server/core/analyze-personality';
 
 export const actions: Actions = {
 	analyze: async ({ request }) => {
@@ -19,27 +20,11 @@ export const actions: Actions = {
 			const rawTweets = await getUserTweets(username, 100, 200);
 			const tweets = stripTweetObject(rawTweets);
 
-			const mockAnalysis = {
-				username: rawUsername,
-				personalityTraits: {
-					openness: 0.75,
-					conscientiousness: 0.68,
-					extraversion: 0.82,
-					agreeableness: 0.71,
-					neuroticism: 0.45
-				},
-				summary: `Based on the analysis of @${rawUsername}'s tweets, this user shows high levels of extraversion and openness to experience. They tend to be outgoing and creative, with moderate conscientiousness and agreeableness. Their neuroticism levels are relatively low, suggesting emotional stability.`,
-				keyInsights: [
-					'Highly social and engaging online presence',
-					'Creative and open to new ideas',
-					'Generally positive emotional tone',
-					'Active in community discussions'
-				]
-			};
+			const analysis = await analyzePersonality(rawUsername, tweets);
 
 			return {
 				success: true,
-				analysis: mockAnalysis
+				analysis
 			};
 		} catch (error) {
 			console.error('Analysis error:', error);
