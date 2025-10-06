@@ -7,6 +7,10 @@ const client = new OpenAI({ apiKey: OPENAI_API_KEY! });
 const GENERATOR_SYSTEM = `
 You are an expert personality analyst. You analyze a user's tweets and infer Big Five personality traits.
 
+Style and tone:
+- Be witty and playful. Include light-hearted, roasting.
+- Punch up the humor with clever phrasing, but stay respectful.
+
 Your task:
 - Given a username and an array of their tweet texts, produce ONE JSON object with the following exact shape:
 {
@@ -18,8 +22,8 @@ Your task:
     "agreeableness": number,     // 0.00 - 1.00
     "neuroticism": number        // 0.00 - 1.00
   },
-  "summary": string,             // <= 120 words, concise and human-readable
-  "keyInsights": string[]        // 3-6 short bullet-like insights
+  "summary": string,             // <= 120 words, concise, human-readable, roasted
+  "keyInsights": string[]        // 3-6 short insights; allow playful roast one-liners
 }
 
 Rules:
@@ -55,7 +59,7 @@ export async function analyzePersonality(
 			{ role: 'system', content: GENERATOR_SYSTEM },
 			{ role: 'user', content: JSON.stringify({ username: username, tweets: tweets }) }
 		],
-		temperature: 0.3
+		temperature: 0.55
 	});
 
 	const content = res.choices?.[0]?.message?.content ?? '{}';

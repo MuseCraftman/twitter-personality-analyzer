@@ -17,7 +17,7 @@ export const actions: Actions = {
 
 		try {
 			const rawUsername = username.replace('@', '');
-			const rawTweets = await getUserTweets(username, 100, 200);
+			const rawTweets = await getUserTweets(username, 100, 100, { excludeReplies: false });
 			const tweets = stripTweetObject(rawTweets);
 
 			const analysis = await analyzePersonality(rawUsername, tweets);

@@ -25,17 +25,18 @@ export async function getUserTweets(
 	userName: string,
 	max: number,
 	pageDelayMs = 2000,
-	opts?: { excludeQuotes?: boolean }
+	opts?: { excludeQuotes?: boolean; excludeReplies?: boolean }
 ) {
 	if (!userName) throw new Error('userName required');
 	if (!Number.isFinite(max) || max <= 0) throw new Error('max must be > 0');
 
 	const excludeQuotes = opts?.excludeQuotes ?? false;
+	const excludeReplies = opts?.excludeReplies ?? true;
 
 	logger.info(
-		`Fetching ${max} original tweets for user ${userName}${
-			excludeQuotes ? ' (excluding quotes)' : ''
-		}`
+		`Fetching ${max} tweets for user ${userName} (excluding retweets${
+			excludeReplies ? ', replies' : ''
+		}${excludeQuotes ? ', quotes' : ''})`
 	);
 
 	const out: any[] = [];
@@ -55,7 +56,8 @@ export async function getUserTweets(
 
 		let originalCount = 0;
 		for (const t of tweets) {
-			if (isRetweet(t) || isReply(t)) continue;
+			if (isRetweet(t)) continue;
+			if (excludeReplies && isReply(t)) continue;
 			if (excludeQuotes && (t?.quoted_tweet || t?.is_quote_status === true)) continue;
 
 			out.push(t);
