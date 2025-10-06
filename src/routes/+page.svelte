@@ -1,7 +1,10 @@
 <script lang="ts">
-	import Header from './components/Header.svelte';
-	import Analyzer from './components/analyzer/Analyzer.svelte';
+	import Header from '../lib/components/Header.svelte';
+	import Analyzer from '../lib/components/analyzer/Analyzer.svelte';
+	import type { ActionData } from './$types';
+
+	export let form: ActionData;
 </script>
 
 <Header />
-<Analyzer />
+<Analyzer {form} />

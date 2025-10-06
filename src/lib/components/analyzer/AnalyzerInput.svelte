@@ -1,10 +1,21 @@
 <script>
 	import { enhance } from '$app/forms';
+	export let loading = false;
 </script>
 
-<form method="POST" action="?/analyze" use:enhance>
+<form
+	method="POST"
+	action="?/analyze"
+	use:enhance={(args) => {
+		loading = true;
+		return async ({ update }) => {
+			await update();
+			loading = false;
+		};
+	}}
+>
 	<input name="username" placeholder="@username" required />
-	<button type="submit">Analyze Personality</button>
+	<button type="submit" disabled={loading}>{loading ? 'Analyzing…' : 'Analyze Personality'}</button>
 </form>
 
 <style lang="scss">
